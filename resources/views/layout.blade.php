@@ -33,25 +33,45 @@
                 ><img class="w-24" src="{{asset('images/logo.png')}}" alt="logo" class="logo"
             /></a>
             <ul class="flex space-x-6 mr-6 text-md text-gray-400">
+                @auth
+                <li class="mt-2 ">
+                    <span class="font-bold uppercase">Welcome {{auth()->user()->name}}</span>
+                </li>
+                {{-- <li class="border-2 border-gray-400 px-2 py-1 rounded-2xl hover:border-laravel hover:bg-black  ">
+                    <a href="/listings/manage" class="hover:text-laravel"
+                        ><i class="fa-solid fa-gear"></i>
+                        Manage Gigs</a
+                    >
+                </li> --}}
+                <li class="border-2 border-gray-400 px-2 py-1 rounded-2xl hover:border-laravel hover:bg-black ">
+                    <form action="/logout" method="POST" class="inline p-3">
+                        @csrf
+                        <button type="submit" class="hover:text-laravel">
+                            <i class="fa-solid fa-sign-out"></i> Logout
+                        </button>
+                    </form>
+                </li>
+                @else
                 <li class="border-2 border-gray-400 px-2 py-1 rounded-2xl hover:border-laravel hover:bg-black  ">
-                    <a href="register.html" class="hover:text-laravel"
+                    <a href="/register" class="hover:text-laravel"
                         ><i class="fa-solid fa-user-plus"></i> Register</a
                     >
                 </li>
                 <li class="border-2 border-gray-400 px-2 py-1 rounded-2xl hover:border-laravel hover:bg-black  ">
-                    <a href="login.html" class="hover:text-laravel"
+                    <a href="/login" class="hover:text-laravel"
                         ><i class="fa-solid fa-arrow-right-to-bracket"></i>
                         Login</a
                     >
                 </li>
+                @endauth
             </ul>
         </nav>
         <main>
             @yield('content')
         </main>
-        <footer class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold bg-laravel text-gray-500 h-20 mt-12 opacity-90 md:justify-center">
-            <p class="ml-2">Copyright &copy; GigHub 2023, All Rights reserved</p>
-            <a href="/listings/create" class="absolute rounded-lg border-2 border-white  top-1/3 right-10 bg-black text-white hover:bg-white hover:text-black hover:border-black py-2 px-5">Post Job</a>
+        <footer class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold bg-laravel text-gray-500 h-24 mt-10 opacity-90 md:justify-center">
+            <p class="ml-2 mb-6">Copyright &copy; GigHub 2023, All Rights reserved</p>
+            <a href="/listings/create" class="absolute rounded-lg border-2 border-white  mb-4 top-2/4 right-10 bg-black text-white hover:bg-white hover:text-black hover:border-black py-2 px-5">Post Job</a>
         </footer>
         <x-flash-message/>
     </body>
