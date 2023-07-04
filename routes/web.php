@@ -21,7 +21,7 @@ use App\Http\Controllers\ListingController;
 // store - save to database
 // edit - show form to edit
 // update - save to database
-// destroy - delete from database
+// destroy/delete - delete from database
 
 
 
@@ -32,5 +32,11 @@ Route::get('/', [ListingController::class, 'index']);
 Route::get('/listings/create', [ListingController::class, 'create']);
 // this is a route for the store method for the create single listing
 Route::post('/listings', [ListingController::class, 'store']);
+//this is a route for showing the edit form for the single listing
+Route::get('/listings/{listing}/edit', [ListingController::class, 'edit']);
+//this is a route for the update method for the single listing
+Route::put('/listings/{listing}', [ListingController::class, 'update']);
+//this is a route for the destroy method for the single listing
+Route::delete('/listings/{listing}', [ListingController::class, 'destroy']);
 //this is a route for the show method for the single listing
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
